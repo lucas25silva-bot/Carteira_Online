@@ -5,3 +5,7 @@ yfinance
 plotly
 matplotlib
 openpyxl
+beautifulsoup4
+requests
+lxml
+html5lib

@@ -170,7 +170,7 @@ def processar_dados_twr(arquivo_carteira):
 
 def plotar_grafico_historico(arquivo_carteira):
     st.markdown("---") 
-    st.subheader("Evolução Histórica e Comparativo")
+    st.subheader("Rentabilida Acumulada x Benchmarks")
     
     with st.spinner('Construindo o histórico da carteira e dos benchmarks... (Isso pode levar alguns segundos)'):
         df_hist = processar_dados_twr(arquivo_carteira)
