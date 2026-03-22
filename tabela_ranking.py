@@ -40,9 +40,9 @@ def plotar_tabela_ranking(posicao, arquivo_ibov):
         # ======================================================================
         # PESOS DO RANKING GERAL (ALTERE AQUI A IMPORTÂNCIA DE CADA NOTA)
         # ======================================================================
-        PESO_MULTIPLOS = 1.0  
+        PESO_MULTIPLOS = 3.0  
         PESO_UPSIDE = 1.0     
-        PESO_RETORNO = 1.0    
+        PESO_RETORNO = 2.0    
         # ======================================================================
         
         soma_pesos = PESO_MULTIPLOS + PESO_UPSIDE + PESO_RETORNO

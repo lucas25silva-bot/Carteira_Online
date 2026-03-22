@@ -57,49 +57,114 @@ def processar_alocacao_tempo_setor(arquivo_carteira):
     # LÓGICA DE MAPEAMENTO DE SETORES IDÊNTICA AO GRÁFICO DE FUNIL
     # =========================================================
     mapa_setores_pt = {
-        'Financial Services': 'Financeiro', 'Healthcare': 'Saúde', 'Technology': 'Tecnologia',
-        'Industrials': 'Bens Industriais', 'Consumer Cyclical': 'Consumo Cíclico',
-        'Consumer Defensive': 'Consumo Não Cíclico', 'Basic Materials': 'Materiais Básicos / Siderurgia',
-        'Energy': 'Petróleo e Gás', 'Utilities': 'Energia Elétrica', 'Real Estate': 'Imobiliário',
-        'Communication Services': 'Comunicações'
-    }
+    'Financial Services': 'Financeiro', 'Healthcare': 'Saúde', 'Technology': 'Tecnologia',
+    'Industrials': 'Bens Industriais', 'Consumer Cyclical': 'Consumo Cíclico',
+    'Consumer Defensive': 'Consumo Não Cíclico', 'Basic Materials': 'Materiais Básicos',
+    'Energy': 'Petróleo e Gás', 'Utilities': 'Utilidade Pública', 'Real Estate': 'Consumo Cíclico',
+    'Communication Services': 'Comunicações'
+}
 
     mapa_b3_setor = {
-        'ITSA4': 'Financeiro', 'ITSA3': 'Financeiro', 'ITUB4': 'Financeiro', 'ITUB3': 'Financeiro',
-        'BBDC4': 'Financeiro', 'BBDC3': 'Financeiro', 'BBAS3': 'Financeiro', 'B3SA3': 'Financeiro',
-        'BPAC11': 'Financeiro', 'SANB11': 'Financeiro', 'BBSE3': 'Financeiro', 'CXSE3': 'Financeiro',
-        'PSSA3': 'Financeiro', 'IRBR3': 'Financeiro', 'BRSR6': 'Financeiro', 'ABCB4': 'Financeiro',
-        'ELET3': 'Energia Elétrica', 'ELET6': 'Energia Elétrica', 'EQTL3': 'Energia Elétrica',
-        'CPLE6': 'Energia Elétrica', 'CMIG4': 'Energia Elétrica', 'ENGI11': 'Energia Elétrica',
-        'TAEE11': 'Energia Elétrica', 'TRPL4': 'Energia Elétrica', 'ISAE4': 'Energia Elétrica',
-        'ALUP11': 'Energia Elétrica', 'EGIE3': 'Energia Elétrica', 'NEOE3': 'Energia Elétrica',
-        'AURE3': 'Energia Elétrica', 'SBSP3': 'Saneamento', 'CSMG3': 'Saneamento', 'SAPR11': 'Saneamento',
-        'SAPR4': 'Saneamento', 'PETR4': 'Petróleo e Gás', 'PETR3': 'Petróleo e Gás', 'PRIO3': 'Petróleo e Gás',
-        'BRAV3': 'Petróleo e Gás', 'RECV3': 'Petróleo e Gás', 'ENAT3': 'Petróleo e Gás',
-        'CSAN3': 'Petróleo e Gás', 'UGPA3': 'Petróleo e Gás', 'VBBR3': 'Petróleo e Gás',
-        'VALE3': 'Materiais Básicos / Siderurgia', 'SUZB3': 'Materiais Básicos / Siderurgia',
-        'KLBN11': 'Materiais Básicos / Siderurgia', 'CSNA3': 'Materiais Básicos / Siderurgia',
-        'GGBR4': 'Materiais Básicos / Siderurgia', 'GOAU4': 'Materiais Básicos / Siderurgia',
-        'USIM5': 'Materiais Básicos / Siderurgia', 'BRAP4': 'Materiais Básicos / Siderurgia',
-        'CMIN3': 'Materiais Básicos / Siderurgia', 'CBAV3': 'Materiais Básicos / Siderurgia',
-        'DXCO3': 'Materiais Básicos / Siderurgia', 'WEGE3': 'Bens Industriais', 'EMBR3': 'Bens Industriais',
-        'CCRO3': 'Bens Industriais', 'RAIL3': 'Bens Industriais', 'AZUL4': 'Bens Industriais',
-        'GOLL4': 'Bens Industriais', 'STBP3': 'Bens Industriais', 'POMO4': 'Bens Industriais',
-        'TUPY3': 'Bens Industriais', 'LREN3': 'Consumo Cíclico', 'MGLU3': 'Consumo Cíclico',
-        'ARZZ3': 'Consumo Cíclico', 'ALOS3': 'Consumo Cíclico', 'PETZ3': 'Consumo Cíclico',
-        'SOMA3': 'Consumo Cíclico', 'CEAB3': 'Consumo Cíclico', 'GUAR3': 'Consumo Cíclico',
-        'CVCB3': 'Consumo Cíclico', 'COGN3': 'Consumo Cíclico', 'YDUQ3': 'Consumo Cíclico',
-        'RENT3': 'Consumo Cíclico', 'MOVI3': 'Consumo Cíclico', 'VAMO3': 'Consumo Cíclico',
-        'SMFT3': 'Consumo Cíclico', 'VIVA3': 'Consumo Cíclico', 'ABEV3': 'Consumo Não Cíclico',
-        'JBSS3': 'Consumo Não Cíclico', 'BRFS3': 'Consumo Não Cíclico', 'CRFB3': 'Consumo Não Cíclico',
-        'ASAI3': 'Consumo Não Cíclico', 'SMTO3': 'Consumo Não Cíclico', 'SLCE3': 'Consumo Não Cíclico',
-        'MRFG3': 'Consumo Não Cíclico', 'BEEF3': 'Consumo Não Cíclico', 'PCAR3': 'Consumo Não Cíclico',
-        'CAML3': 'Consumo Não Cíclico', 'RADL3': 'Saúde', 'RDOR3': 'Saúde', 'HAPV3': 'Saúde',
-        'FLRY3': 'Saúde', 'MATD3': 'Saúde', 'QUAL3': 'Saúde', 'BLAU3': 'Saúde', 'VVEO3': 'Saúde',
-        'PNVL3': 'Saúde', 'TOTS3': 'Tecnologia', 'LWSA3': 'Tecnologia', 'VIVT3': 'Comunicações',
-        'TIMS3': 'Comunicações', 'MULT3': 'Imobiliário', 'IGTI11': 'Imobiliário', 'CYRE3': 'Imobiliário',
-        'EZTC3': 'Imobiliário', 'MRVE3': 'Imobiliário', 'DIRR3': 'Imobiliário', 'JHSF3': 'Imobiliário',
-        'HBOR3': 'Imobiliário'
+
+        # FINANCEIRO
+        'ITSA4': 'Financeiro', 'ITUB4': 'Financeiro', 'BBDC4': 'Financeiro',
+        'BBAS3': 'Financeiro', 'B3SA3': 'Financeiro', 'BPAC11': 'Financeiro',
+        'SANB11': 'Financeiro', 'BBSE3': 'Financeiro', 'CXSE3': 'Financeiro',
+        'IRBR3': 'Financeiro', 'BRSR6': 'Financeiro', 'ABCB4': 'Financeiro',
+
+        # UTILIDADE PÚBLICA (energia + saneamento juntos, padrão B3)
+        'ELET3': 'Utilidade Pública', 'ELET6': 'Utilidade Pública',
+        'EQTL3': 'Utilidade Pública', 'CPLE6': 'Utilidade Pública',
+        'CMIG4': 'Utilidade Pública', 'ENGI11': 'Utilidade Pública',
+        'TAEE11': 'Utilidade Pública', 'TRPL4': 'Utilidade Pública',
+        'ALUP11': 'Utilidade Pública', 'EGIE3': 'Utilidade Pública',
+        'NEOE3': 'Utilidade Pública', 'AURE3': 'Utilidade Pública',
+        'SBSP3': 'Utilidade Pública', 'CSMG3': 'Utilidade Pública',
+        'SAPR11': 'Utilidade Pública', 'SAPR4': 'Utilidade Pública',
+
+        # PETRÓLEO E GÁS
+        'PETR4': 'Petróleo e Gás', 'PETR3': 'Petróleo e Gás',
+        'PRIO3': 'Petróleo e Gás', 'RECV3': 'Petróleo e Gás',
+        'ENAT3': 'Petróleo e Gás', 'CSAN3': 'Petróleo e Gás',
+        'UGPA3': 'Petróleo e Gás', 'VBBR3': 'Petróleo e Gás',
+
+        # MATERIAIS BÁSICOS
+        'VALE3': 'Materiais Básicos', 'SUZB3': 'Materiais Básicos',
+        'KLBN11': 'Materiais Básicos', 'CSNA3': 'Materiais Básicos',
+        'GGBR4': 'Materiais Básicos', 'GOAU4': 'Materiais Básicos',
+        'USIM5': 'Materiais Básicos', 'BRAP4': 'Materiais Básicos',
+        'CMIN3': 'Materiais Básicos', 'CBAV3': 'Materiais Básicos',
+        'DXCO3': 'Materiais Básicos',
+
+        # INDUSTRIAL
+        'WEGE3': 'Bens Industriais', 'EMBR3': 'Bens Industriais',
+        'CCRO3': 'Bens Industriais', 'RAIL3': 'Bens Industriais',
+        'AZUL4': 'Bens Industriais', 'GOLL4': 'Bens Industriais',
+        'STBP3': 'Bens Industriais', 'POMO4': 'Bens Industriais',
+        'TUPY3': 'Bens Industriais', 'MILS3': 'Bens Industriais',
+
+        # CONSUMO CÍCLICO
+        'LREN3': 'Consumo Cíclico', 'MGLU3': 'Consumo Cíclico',
+        'ARZZ3': 'Consumo Cíclico', 'PETZ3': 'Consumo Cíclico',
+        'SOMA3': 'Consumo Cíclico', 'CEAB3': 'Consumo Cíclico',
+        'CVCB3': 'Consumo Cíclico', 'COGN3': 'Consumo Cíclico',
+        'YDUQ3': 'Consumo Cíclico', 'RENT3': 'Consumo Cíclico',
+        'MOVI3': 'Consumo Cíclico', 'VIVA3': 'Consumo Cíclico',
+        'MULT3': 'Consumo Cíclico', 'IGTI11': 'Consumo Cíclico',
+        'CYRE3': 'Consumo Cíclico', 'EZTC3': 'Consumo Cíclico',
+        'MRVE3': 'Consumo Cíclico', 'DIRR3': 'Consumo Cíclico',
+        'JHSF3': 'Consumo Cíclico', 'HBOR3': 'Consumo Cíclico',
+
+        # CONSUMO NÃO CÍCLICO
+        'ABEV3': 'Consumo Não Cíclico', 'JBSS3': 'Consumo Não Cíclico',
+        'BRFS3': 'Consumo Não Cíclico', 'CRFB3': 'Consumo Não Cíclico',
+        'ASAI3': 'Consumo Não Cíclico', 'SMTO3': 'Consumo Não Cíclico',
+        'SLCE3': 'Consumo Não Cíclico', 'MRFG3': 'Consumo Não Cíclico',
+        'BEEF3': 'Consumo Não Cíclico', 'PCAR3': 'Consumo Não Cíclico',
+        'CAML3': 'Consumo Não Cíclico',
+
+        # SAÚDE
+        'RADL3': 'Saúde', 'RDOR3': 'Saúde', 'HAPV3': 'Saúde',
+        'FLRY3': 'Saúde', 'MATD3': 'Saúde', 'QUAL3': 'Saúde',
+        'BLAU3': 'Saúde', 'VVEO3': 'Saúde', 'PNVL3': 'Saúde',
+
+        # TECNOLOGIA
+        'TOTS3': 'Tecnologia', 'LWSA3': 'Tecnologia',
+
+        # COMUNICAÇÕES
+        'VIVT3': 'Comunicações', 'TIMS3': 'Comunicações',
+
+        'ENEV3': 'Utilidade Pública',
+        'AXIA3': 'Utilidade Pública',
+        'AXIA6': 'Utilidade Pública',
+        'AXIA7': 'Utilidade Pública',
+        'CPLE3': 'Utilidade Pública',
+        'ISAE4': 'Utilidade Pública',
+
+        'CURY3': 'Consumo Cíclico',
+        'ALOS3': 'Consumo Cíclico',
+        'AZZA3': 'Consumo Cíclico',
+        'SMFT3': 'Consumo Cíclico',
+        'VAMO3': 'Consumo Cíclico',
+        'CYRE4': 'Consumo Cíclico',
+        'RENT4': 'Consumo Cíclico',
+
+        'BBDC3': 'Financeiro',
+        'PSSA3': 'Financeiro',
+
+        'MILS3': 'Bens Industriais',
+        'MOTV3': 'Bens Industriais',
+
+        'HYPE3': 'Saúde',
+
+        'BRKM5': 'Materiais Básicos',
+
+        'BRAV3': 'Petróleo e Gás',
+        'RAIZ4': 'Petróleo e Gás',
+
+        'MRFG3': 'Consumo Não Cíclico',
+        'NTCO3': 'Consumo Não Cíclico'
+
     }
 
     def classificar_setor(t):
